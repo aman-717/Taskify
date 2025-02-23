@@ -1,0 +1,120 @@
+/* Base styles */
+.page-not-found {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  font-family: "Arial", sans-serif;
+}
+
+.error-code {
+  font-size: 8rem;
+  font-weight: bold;
+  color: #ff6b6b;
+  margin: 0;
+}
+
+.error-message {
+  font-size: 2rem;
+  color: #495057;
+  margin: 10px 0;
+}
+
+/* Back to Home Button */
+.back-home {
+  margin-top: 20px;
+  padding: 12px 24px;
+  background: linear-gradient(45deg, #ff6f61, #ff9478);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+/* Add hover effect */
+.back-home:hover {
+  background: linear-gradient(45deg, #ff9478, #ff6f61);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Add a ripple effect */
+.back-home::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 300%;
+  height: 300%;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  opacity: 0;
+  transition: transform 0.5s, opacity 0.5s;
+}
+
+.back-home:hover::before {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 0;
+}
+
+/* Add focus effect */
+.back-home:focus {
+  outline: 2px dashed #ff6f61;
+  outline-offset: 4px;
+}
+
+/* Responsive Design Adjustments */
+@media (max-width: 768px) {
+  .back-home {
+    font-size: 0.9rem;
+    padding: 10px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .back-home {
+    font-size: 0.8rem;
+    padding: 8px 16px;
+  }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .error-code {
+    font-size: 5rem;
+  }
+
+  .error-message {
+    font-size: 1.5rem;
+  }
+
+  .go-home-btn {
+    font-size: 1rem;
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .error-code {
+    font-size: 4rem;
+  }
+
+  .error-message {
+    font-size: 1.2rem;
+  }
+
+  .go-home-btn {
+    font-size: 0.9rem;
+    padding: 6px 12px;
+  }
+}
