@@ -8,10 +8,11 @@ const generateTokenAndSaveInCookies = async (userId, res) => {
   });
   res.cookie("jwt", token, {
     httpOnly: true,
-    secure: false,
-    sameSite: "lax",
+    secure: true,  // Ensure the cookie is sent only over HTTPS
+    sameSite: "strict", // Strict mode for better security (optional)
     path: "/",
-  });
+});
+
   await User.findByIdAndUpdate(userId, { token });
   return token;
 };
