@@ -7,11 +7,12 @@ const generateTokenAndSaveInCookies = async (userId, res) => {
     // new Date(Date.now() + 10 * 24 * 60 * 60 * 1000),
   });
   res.cookie("jwt", token, {
-    httpOnly: true,
-    secure: true,  // Ensure the cookie is sent only over HTTPS
-    sameSite: "None", // Strict mode for better security (optional)
-    path: "/",
+  httpOnly: true,
+  secure: process.env.NODE_ENV === "production", // Only secure in production
+  sameSite: "strict",
+  path: "/",
 });
+
 
   await User.findByIdAndUpdate(userId, { token });
   return token;
