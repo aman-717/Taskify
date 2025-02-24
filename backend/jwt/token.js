@@ -9,7 +9,7 @@ const generateTokenAndSaveInCookies = async (userId, res) => {
   res.cookie("jwt", token, {
     httpOnly: true,
     secure: true,  // Ensure the cookie is sent only over HTTPS
-    sameSite: "strict", // Strict mode for better security (optional)
+    sameSite: "None", // Strict mode for better security (optional)
     path: "/",
 });
 
