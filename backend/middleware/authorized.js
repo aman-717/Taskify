@@ -3,25 +3,24 @@ const jwt = require("jsonwebtoken");
 const User = require("../model/user.model.js");
 require("dotenv").config();
 const authenticate = async (req, res, next) => {
-  const token = req.cookies.jwt;
-  console.log("jwt middleware", token);
-  if (!token) {
-    return res.status(401).json({
-      success: false,
-      message: "Unauthorized",
-    });
-  }
   try {
-    const decoded = jwt.verify(token, process.env.JWT);
-    // console.log(decoded);
-    req.user = await User.findById(decoded.userId);
+    const token = req.cookies.jwt; // Read token from cookies
+    if (!token) {
+      return res.status(401).json({ success: false, message: "Unauthorized" });
+    }
+
+    const decoded = jwt.verify(token, process.env.JWT); // Verify token
+    const user = await User.findById(decoded.userId); // Find user in DB
+
+    if (!user) {
+      return res.status(401).json({ success: false, message: "User not found" });
+    }
+
+    req.user = user; // Attach user to request object
+    next(); // Move to the next middleware
   } catch (error) {
-    console.log(error);
-    return res.status(500).json({
-      success: false,
-      message: "Error in JWT verification",
-    });
+    res.status(401).json({ success: false, message: "Invalid Token" });
   }
-  next();
 };
+
 module.exports = authenticate;
