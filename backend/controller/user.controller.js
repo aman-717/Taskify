@@ -74,12 +74,17 @@ const login = async (req, res) => {
       });
     }
     const token = await generateTokenAndSaveInCookies(user._id, res);
-    res.status(200).json({
-      success: true,
-      message: "Logged in successfully",
-      user,
-      token,
-    });
+res.status(200).json({
+  success: true,
+  message: "Logged in successfully",
+  token,
+  user: {
+    id: user._id,
+    email: user.email,
+    username: user.username,
+  },
+});
+
   } catch (error) {
     console.log(error);
     res.status(500).json({
