@@ -1,11 +1,3 @@
-Got it 👍
-If you want to include **Nodemailer** in your project (for sending emails like task updates, signup confirmations, reminders), we’ll update the **README.md** so anyone using your repo knows about this feature.
-
-Here’s the updated **README.md** with **Nodemailer integration**:
-
----
-
-```markdown
 # 📝 Taskify – MERN Task Management App
 
 Taskify is a modern **task management web application** built with the **MERN stack (MongoDB, Express.js, React.js, Node.js)**.  
